@@ -78,27 +78,24 @@ def final_model(n=4):
 
     return imputer, preprocessor, model, feature_names
 
-def save_pipeline(pipeline_dict):
+def save_pipeline(pipeline_dict, id=2):
     PATH = "/mnt/c/Project/flu-shot-learning/saved-pipeline/"
-    with open(PATH + "saved_pipeline.bin", "wb") as file_in:
+    with open(PATH + f"saved_pipeline_{id}.bin", "wb") as file_in:
          pickle.dump(pipeline_dict, file_in)
     print("the pipeline has been saved")
 
-def main():
-    # final model
-    imputer, preprocessor, model, feature_names = final_model(n=4)
-    pipeline_dict = {
+# final model
+imputer, preprocessor, model, feature_names = final_model(n=4)
+pipeline_dict = {
         "imputer": imputer,
         "preprocessor": preprocessor,
         "model": model,
         "features": feature_names
-    }
+}
 
-    # saved the pipeline and model
-    save_pipeline(pipeline_dict)
+# saved the pipeline and model
+save_pipeline(pipeline_dict)
 
-if __name__ == '__main__':
-    main()
 
 
 
